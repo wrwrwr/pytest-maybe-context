@@ -1,0 +1,36 @@
+[tool.poetry]
+name = 'pytest-maybe-context'
+version = '0.1'
+description = "Simplify tests with warning and exception cases."
+readme = 'readme.md'
+authors = ["wrwrwr <code@wr.waw.pl>"]
+license = 'MIT'
+keywords = ['pytest', 'plugin']
+packages = [{include = 'pytest_maybe_context'}]
+repository = "https://github.com/wrwrwr/pytest-maybe-context"
+
+[tool.poetry.dependencies]
+python = '^3.10'
+pytest = '^7'
+
+[tool.poetry.group.dev.dependencies]
+flake8 = '*'
+flake8-pyproject = '*'
+mypy = '*'
+pytest = '*'
+poethepoet = '*'
+
+[tool.pytest.ini_options]
+addopts = ['--import-mode=importlib']
+
+[tool.poe.tasks]
+lint.sequence = ['lint_flake8', 'lint_mypy', 'lint_cspell']
+lint.ignore_fail = 'return_non_zero'
+lint_flake8 = 'poetry run flake8 pytest_maybe_context tests'
+lint_mypy = 'poetry run mypy --strict pytest_maybe_context tests'
+lint_cspell = 'cspell --no-progress --gitignore *'
+test = 'poetry run pytest'
+
+[build-system]
+requires = ['poetry-core>=1.2.0']
+build-backend = 'poetry.core.masonry.api'

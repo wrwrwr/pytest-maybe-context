@@ -1,0 +1,14 @@
+language: en
+
+ignorePaths:
+    - cspell.yaml
+    - license.txt
+    - pyproject.toml
+
+userWords:
+    - ignore-user-settings
+
+words:
+    - isinstance
+    - pytest
+    - recwarn
